@@ -1,0 +1,20 @@
+---
+# 覆盖主题的 Sass 入口：先引入 minima，再追加自定义样式
+---
+
+@import "minima";
+
+/* ===== 自定义排版 ===== */
+
+/* 图片：上下留白 + 水平居中
+   Markdown 会把连续空行折叠掉，原稿里图片下方的空行在网页上不会产生高度，
+   这里用外边距补回分隔感（数值可调：1em = 16px） */
+.post-content img {
+  display: block;
+  margin: 2em auto;
+}
+
+/* 相邻两张图之间不叠加双倍留白 */
+.post-content p + p > img {
+  margin-top: 0;
+}
