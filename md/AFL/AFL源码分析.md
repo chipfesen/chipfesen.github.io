@@ -3669,6 +3669,12 @@ return 1;
 
 
 
+**loop**
+
+![](AFL_img/3.4.3.loop.png)
+
+
+
 **完整执行时序（persistent 模式）**
 
 ![3.4.3.persistent](AFL_img/3.4.3.persistent.png)
