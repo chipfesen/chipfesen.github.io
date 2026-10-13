@@ -6,6 +6,12 @@ lang: zh-CN
 url: "https://chipfesen.github.io"
 baseurl: ""
 
+# 顶部导航只保留首页。
+# 不写这一项的话，minima 会把所有带 title 的页面都塞进导航栏，
+# AFL 的 index.md 就是这样冒出来的（导航栏全局生效，所以每个页面都能看到）。
+header_pages:
+  - index.md
+
 # md/ 下的原始归档稿不发布（仍在 Git 仓库里），避免和正式文章重复；
 # 图片目录不受影响，照常发布。
 exclude:
