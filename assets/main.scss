@@ -20,6 +20,10 @@
 .post-content img {
   display: block;
   margin: 1em auto 2.5em;
+  max-width: 100%;
+  /* 标签里写了 width/height 属性（供浏览器预留高度、避免懒加载跳动），
+     这里必须允许高度自适应，否则缩放时会变形 */
+  height: auto;
 }
 
 /* ===== 空行占位 =====

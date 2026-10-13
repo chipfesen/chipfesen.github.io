@@ -106,7 +106,7 @@ afl-gcc -o /home/chipfesen/Fuzz/study/vuln_fuzz /home/chipfesen/Fuzz/study/vuln.
 afl-fuzz -i /home/chipfesen/Fuzz/study/input -o /home/chipfesen/Fuzz/study/output /home/chipfesen/Fuzz/study/vuln_fuzz
 ```
 
-![0.0](/md/AFL/AFL_img/0.0.png)
+<img src="/md/AFL/AFL_img/0.0.png" alt="0.0" width="1005" height="698" loading="lazy" decoding="async" />
 
 右上角的"uniq crashes"为1说明找到了使得程序崩溃的输入
 
@@ -119,7 +119,7 @@ ls /home/chipfesen/Fuzz/study/output/crashes
 cat /home/chipfesen/Fuzz/study/output/crashes/id:000000,sig:11,src:000002,op:havoc,rep:2
 ```
 
-![0.1](/md/AFL/AFL_img/0.1.png)
+<img src="/md/AFL/AFL_img/0.1.png" alt="0.1" width="1442" height="123" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -282,7 +282,7 @@ gdb --args afl-gcc /home/chipfesen/Fuzz/study/vuln.c -fno-stack-protector -g -o 
 
 在main函数处下断点,然后输入r运行
 
-![1.1.1](/md/AFL/AFL_img/1.1.1.png)
+<img src="/md/AFL/AFL_img/1.1.1.png" alt="1.1.1" width="1920" height="1020" loading="lazy" decoding="async" />
 
 我们可以看到argc存放的是0x6,argv数组中第一个元素里面存放的是指向afl-gcc的文件路径,而find_as函数则需要用到argv[0]
 
@@ -437,19 +437,19 @@ find_as函数位于第64行,于是我们直接将断点下在第64行调试
 
 单步步过到第69行后可以看到afl_path的值为0,因为我们没有设置AFL_PATH 环境变量,所以值为0,那么下面的if判断不会执行
 
-![1.2.5.1](/md/AFL/AFL_img/1.2.5.1.png)
+<img src="/md/AFL/AFL_img/1.2.5.1.png" alt="1.2.5.1" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 继续单步步过到第95行可以发现dir从argv中获取了AFL的目录路径,而tmp在路径后加上了afl-as
 
-![1.2.5.2](/md/AFL/AFL_img/1.2.5.2.png)
+<img src="/md/AFL/AFL_img/1.2.5.2.png" alt="1.2.5.2" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 我们在第98行下断点,查看可发现as_path被赋值为dir中的路径
 
-![1.2.5.3](/md/AFL/AFL_img/1.2.5.3.png)
+<img src="/md/AFL/AFL_img/1.2.5.3.png" alt="1.2.5.3" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -830,25 +830,25 @@ gdb --args afl-gcc /home/chipfesen/Fuzz/study/vuln.c -fno-stack-protector -g -o 
 
 判断当前属于是afl-gcc编译器包装器
 
-![1.4.1](/md/AFL/AFL_img/1.4.1.png)
+<img src="/md/AFL/AFL_img/1.4.1.png" alt="1.4.1" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 由于name为afl-gcc,所以不会进入下面的if判断,直接跳转到第173行
 
-![1.4.2](/md/AFL/AFL_img/1.4.2.png)
+<img src="/md/AFL/AFL_img/1.4.2.png" alt="1.4.2" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 由于都不满足判断条件,所以我们进入else分支,步过到188行可看到cc_params[0]设置为了gcc
 
-![1.4.3](/md/AFL/AFL_img/1.4.3.png)
+<img src="/md/AFL/AFL_img/1.4.3.png" alt="1.4.3" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 后续都是对cc_grams数组修改,我们直接在303行下断点调试
 
-![1.4.4](/md/AFL/AFL_img/1.4.4.png)
+<img src="/md/AFL/AFL_img/1.4.4.png" alt="1.4.4" width="1920" height="1020" loading="lazy" decoding="async" />
 
 最后我们可以发现afl-gcc的作用就是如下
 
@@ -1195,11 +1195,11 @@ gdb --args ./afl-as -o /tmp/vuln.o /tmp/vuln.s
 
 <div class="blank-gap" style="height:2.00em"></div>
 
-![2.1.1.0](/md/AFL/AFL_img/2.1.1.0.png)
+<img src="/md/AFL/AFL_img/2.1.1.0.png" alt="2.1.1.0" width="1736" height="648" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
-![2.1.1.1](/md/AFL/AFL_img/2.1.1.1.png)
+<img src="/md/AFL/AFL_img/2.1.1.1.png" alt="2.1.1.1" width="1413" height="227" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -1207,19 +1207,19 @@ inst_ratio_str为0表示**没有设置 `AFL_INST_RATIO` 环境变量**，因此�
 
 clang_mode也为0表示**当前不是 Clang 模式**，即汇编器按照 GCC / GNU as 的语法和规则处理输入文件
 
-![2.1.1.2](/md/AFL/AFL_img/2.1.1.2.png)
+<img src="/md/AFL/AFL_img/2.1.1.2.png" alt="2.1.1.2" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
 在539行会进入add_instrumentation,我们在这里先不分析
 
-![2.1.1.3](/md/AFL/AFL_img/2.1.1.3.png)
+<img src="/md/AFL/AFL_img/2.1.1.3.png" alt="2.1.1.3" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 此处会通过 execvp来启动as
 
-![2.1.1.4](/md/AFL/AFL_img/2.1.1.4.png)
+<img src="/md/AFL/AFL_img/2.1.1.4.png" alt="2.1.1.4" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -1505,7 +1505,7 @@ gdb --args ./afl-as -o /tmp/vuln.o /tmp/vuln.s
 
 可以看到input_file为我们输入的指令中vuln.s的路径,且pass_thru为0,正常执行插桩逻辑
 
-![2.2.3.1](/md/AFL/AFL_img/2.2.3.1.png)
+<img src="/md/AFL/AFL_img/2.2.3.1.png" alt="2.2.3.1" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -1517,7 +1517,7 @@ gdb --args ./afl-as -o /home/chipfesen/Fuzz/study/vuln.o /home/chipfesen/Fuzz/st
 
 如果 `pass_thru` 被设置为 `1`，`afl-as` 会进入**透传模式**，即**完全跳过插桩逻辑**，仅将输入的汇编文件原样复制到输出文件中，不插入任何 `trampoline` 或 `main_payload` 代码
 
-![2.2.3.2](/md/AFL/AFL_img/2.2.3.2.png)
+<img src="/md/AFL/AFL_img/2.2.3.2.png" alt="2.2.3.2" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -1525,37 +1525,37 @@ gdb --args ./afl-as -o /home/chipfesen/Fuzz/study/vuln.o /home/chipfesen/Fuzz/st
 
 读取的这一行不会进行插桩
 
-![2.2.3.3](/md/AFL/AFL_img/2.2.3.3.png)
+<img src="/md/AFL/AFL_img/2.2.3.3.png" alt="2.2.3.3" width="1920" height="1020" loading="lazy" decoding="async" />
 
 这一行为.text开头,所以会将instr_ok设置为1
 
-![2.2.3.4](/md/AFL/AFL_img/2.2.3.4.png)
+<img src="/md/AFL/AFL_img/2.2.3.4.png" alt="2.2.3.4" width="1920" height="1020" loading="lazy" decoding="async" />
 
-![2.2.3.5](/md/AFL/AFL_img/2.2.3.5.png)
+<img src="/md/AFL/AFL_img/2.2.3.5.png" alt="2.2.3.5" width="263" height="122" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
 line指向section,所以接下来instr_ok会设置为0,后续都是读取汇编然后进行相应的修改
 
-![2.2.3.6](/md/AFL/AFL_img/2.2.3.6.png)
+<img src="/md/AFL/AFL_img/2.2.3.6.png" alt="2.2.3.6" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
 我们在第454行下断点,分析循环结束后的流程,因为我们的插桩点大于0,所以下一行会在文件末尾添加主载荷,因为我们是64位的,所以主载荷模板为main_payload_64
 
-![2.2.3.7](/md/AFL/AFL_img/2.2.3.7.png)
+<img src="/md/AFL/AFL_img/2.2.3.7.png" alt="2.2.3.7" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 模板对应的就是afl-as.h里面的定义
 
-![2.2.3.9](/md/AFL/AFL_img/2.2.3.9.png)
+<img src="/md/AFL/AFL_img/2.2.3.9.png" alt="2.2.3.9" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 编译后的载荷入下图所示
 
-![2.2.3.8](/md/AFL/AFL_img/2.2.3.8.png)
+<img src="/md/AFL/AFL_img/2.2.3.8.png" alt="2.2.3.8" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -1563,7 +1563,7 @@ line指向section,所以接下来instr_ok会设置为0,后续都是读取汇编�
 
 **inf**
 
-![2.2.3.inf](/md/AFL/AFL_img/2.2.3.inf.png)
+<img src="/md/AFL/AFL_img/2.2.3.inf.png" alt="2.2.3.inf" width="1920" height="1020" loading="lazy" decoding="async" />
 
 ```
 _flags = 0xfbad2498
@@ -1585,7 +1585,7 @@ _IO_buf_end = 0x555555560920
 
 **outf**
 
-![2.2.3.outf](/md/AFL/AFL_img/2.2.3.outf.png)
+<img src="/md/AFL/AFL_img/2.2.3.outf.png" alt="2.2.3.outf" width="1920" height="1020" loading="lazy" decoding="async" />
 
 ```
 _flags = 0xfbad2c84
@@ -1612,9 +1612,9 @@ _IO_buf_end = 0x555555561930
 
 458行之后则关闭输出文件
 
-![2.2.3.inf_end](/md/AFL/AFL_img/2.2.3.inf_end.png)
+<img src="/md/AFL/AFL_img/2.2.3.inf_end.png" alt="2.2.3.inf_end" width="1203" height="742" loading="lazy" decoding="async" />
 
-![2.2.3.outf_end](/md/AFL/AFL_img/2.2.3.outf_end.png)
+<img src="/md/AFL/AFL_img/2.2.3.outf_end.png" alt="2.2.3.outf_end" width="1164" height="745" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -1636,7 +1636,7 @@ trampoline_fmt_32 / trampoline_fmt_64：定义在条件跳转指令和分支标�
 
 此处的trampoline_fmt_64便是上文在汇编文件中插入的模板
 
-![2.3.trampoline](/md/AFL/AFL_img/2.3.trampoline.png)
+<img src="/md/AFL/AFL_img/2.3.trampoline.png" alt="2.3.trampoline" width="380" height="409" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -1670,15 +1670,15 @@ afl-gcc /home/chipfesen/Fuzz/study/vuln.c -fno-stack-protector -g -o /home/chipf
 
 使用ida打开,有5个__afl_maybe_log探针,而_afl_maybe_log由asl-as中的插桩代码建立
 
-![2.4._afl_maybe_log](/md/AFL/AFL_img/2.4._afl_maybe_log.png)
+<img src="/md/AFL/AFL_img/2.4._afl_maybe_log.png" alt="2.4._afl_maybe_log" width="1920" height="1020" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
 这段代码在每一个基本块前面都插入了 `call __afl_maybe_log` 指令,在64位环境下，AFL会插入 `trampoline_fmt_64` 到文件中，在32位环境下，AFL会插入`trampoline_fmt_32` 到文件中,而`trampoline_fmt_64`定义于afl-as.h,可以看到与ida中的插桩代码一样
 
-![2.4.fprintf](/md/AFL/AFL_img/2.4.fprintf.png)
+<img src="/md/AFL/AFL_img/2.4.fprintf.png" alt="2.4.fprintf" width="633" height="418" loading="lazy" decoding="async" />
 
-![2.4.trampoline](/md/AFL/AFL_img/2.4.trampoline.png)
+<img src="/md/AFL/AFL_img/2.4.trampoline.png" alt="2.4.trampoline" width="509" height="843" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -1908,7 +1908,7 @@ _afl_prev_loc = _afl_prev_loc >> 1;     // 3. 右移一位，作为下一次的 
 
 ​	**后端（LLC）**：将 LLVM IR 转换为具体目标机器的汇编或机器码
 
-![3.1.llvm](/md/AFL/AFL_img/3.1.llvm.png)
+<img src="/md/AFL/AFL_img/3.1.llvm.png" alt="3.1.llvm" width="1656" height="174" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -3140,7 +3140,7 @@ __afl_area_ptr[0] = 1;
 
 `__afl_map_shm()` 通过 AFL 运行时库的初始化机制触发，通常放在 `.init_array` 段或通过 `__attribute__((constructor))` 标记的函数中，**在 `main()` 之前自动执行**。调用时序如下：
 
-![3.4.2.shm](/md/AFL/AFL_img/3.4.2.shm.png)
+<img src="/md/AFL/AFL_img/3.4.2.shm.png" alt="3.4.2.shm" width="591" height="406" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:6.00em"></div>
 
@@ -3425,13 +3425,13 @@ afl-fuzz 解析status：
 
 正常模式（首轮 + 后续轮次）
 
-![3.4.2.normal](/md/AFL/AFL_img/3.4.2.normal.png)
+<img src="/md/AFL/AFL_img/3.4.2.normal.png" alt="3.4.2.normal" width="712" height="396" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 Persistent 模式（首轮 + 后续轮次）
 
-![3.4.2.Persistent](/md/AFL/AFL_img/3.4.2.Persistent.png)
+<img src="/md/AFL/AFL_img/3.4.2.Persistent.png" alt="3.4.2.Persistent" width="786" height="405" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -3629,13 +3629,13 @@ return 1;
 
 **loop**
 
-![](/md/AFL/AFL_img/3.4.3.loop.png)
+<img src="/md/AFL/AFL_img/3.4.3.loop.png" alt="" width="641" height="453" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 **完整执行时序（persistent 模式）**
 
-![3.4.3.persistent](/md/AFL/AFL_img/3.4.3.persistent.png)
+<img src="/md/AFL/AFL_img/3.4.3.persistent.png" alt="3.4.3.persistent" width="776" height="723" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -3656,7 +3656,7 @@ void __afl_manual_init(void) {
 
 `init_done` 确保只初始化一次
 
-![3.4.4](/md/AFL/AFL_img/3.4.4.png)
+<img src="/md/AFL/AFL_img/3.4.4.png" alt="3.4.4" width="580" height="552" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -3810,7 +3810,7 @@ while (start < stop) {
 
 <div class="blank-gap" style="height:2.00em"></div>
 
-![3.4.7.init](/md/AFL/AFL_img/3.4.7.init.png)
+<img src="/md/AFL/AFL_img/3.4.7.init.png" alt="3.4.7.init" width="698" height="554" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:6.00em"></div>
 
@@ -4397,7 +4397,7 @@ static inline u8 has_new_bits(u8* virgin_map) {   // 907行
 
 配合 `write_bitmap()`（863 行，把 `virgin_bits` 存成 `fuzz_bitmap`）形成闭环：
 
-![4.1.2.8](/md/AFL/AFL_img/4.1.2.8.png)
+<img src="/md/AFL/AFL_img/4.1.2.8.png" alt="4.1.2.8" width="556" height="179" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -4474,7 +4474,7 @@ if (dumb_mode) {
 
 典型用法是"**崩溃 triage 后的再挖掘**"：
 
-![4.1.2.9](/md/AFL/AFL_img/4.1.2.9.png)
+<img src="/md/AFL/AFL_img/4.1.2.9.png" alt="4.1.2.9" width="371" height="75" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -4993,7 +4993,7 @@ out_dir  = x;          // 新的 out_dir → out/<id> 本实例工作区
 
 并行目录结构成型：
 
-![4.1.5.1](/md/AFL/AFL_img/4.1.5.1.png)
+<img src="/md/AFL/AFL_img/4.1.5.1.png" alt="4.1.5.1" width="481" height="120" loading="lazy" decoding="async" />
 
 `synchronization` 的关键就在这：`sync_fuzzers()` 扫描 `sync_dir` 下**其他实例**的 `queue/`，把它们的发现导入自己队列，实现成果互通
 
@@ -5560,7 +5560,7 @@ if (sched_setaffinity(0, sizeof(c), &c))
 
 流程如下
 
-![4.1.11.1](/md/AFL/AFL_img/4.1.11.1.png)
+<img src="/md/AFL/AFL_img/4.1.11.1.png" alt="4.1.11.1" width="521" height="388" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -5894,7 +5894,7 @@ setenv(SHM_ENV_VAR, shm_str, 1);      // "__AFL_SHM_ID" = "12345"
 
 协作流程如下图所示
 
-![4.1.16.1](/md/AFL/AFL_img/4.1.16.1.png)
+<img src="/md/AFL/AFL_img/4.1.16.1.png" alt="4.1.16.1" width="503" height="261" loading="lazy" decoding="async" />
 
 插桩汇编（`afl-as` 注入）在目标启动时读环境变量拿 id，`shmat` 挂载，之后每次执行命中的基本块边都自增对应字节。父进程跑完一次后读 `trace_bits` 就是完整路径覆盖图
 
@@ -6156,7 +6156,7 @@ fprintf(plot_file, "# unix_time, cycles_done, cur_path, paths_total, ...");
 
 ##### **完整目录树**
 
-![4.1.18.1](/md/AFL/AFL_img/4.1.18.1.png)
+<img src="/md/AFL/AFL_img/4.1.18.1.png" alt="4.1.18.1" width="409" height="311" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:6.00em"></div>
 
@@ -6511,7 +6511,7 @@ if (in_place_resume) nuke_resume_dir();   // 3063 行
 
 ##### 与前后函数的关系
 
-![4.1.21.1](/md/AFL/AFL_img/4.1.21.1.png)
+<img src="/md/AFL/AFL_img/4.1.21.1.png" alt="4.1.21.1" width="571" height="240" loading="lazy" decoding="async" />
 
 为什么必须迁移，因为后续 fuzz 中每条队列文件的 `fname` 要被 `open` 无数次，且 `crashes/`、`hangs/` 的样本也要复用这套命名。种子留在 `in_dir` 不迁到 `out_dir` 的话，`out_dir` 就不自包含、resume 也没法用
 
@@ -7508,7 +7508,7 @@ start_us = get_cur_time_us();		                            //记录本次校准�
 
 外层 `for` 包着一条**顺序流水线**（写→跑→判→哈希），内嵌两层条件
 
-![4.2.4.0](/md/AFL/AFL_img/4.2.4.0.png)
+<img src="/md/AFL/AFL_img/4.2.4.0.png" alt="4.2.4.0" width="811" height="290" loading="lazy" decoding="async" />
 
 > 结构要点：
 >
@@ -7590,13 +7590,13 @@ abort_calibration:                           //当校准循环需要提前结束
 
 ##### 函数结构
 
-![4.2.4.1](/md/AFL/AFL_img/4.2.4.1.png)
+<img src="/md/AFL/AFL_img/4.2.4.1.png" alt="4.2.4.1" width="427" height="407" loading="lazy" decoding="async" />
 
 ##### 函数控制流程图
 
 [图片源自]: https://paper.seebug.org/1732#2-3-calibrate-case-%E5%87%BD%E6%95%B0
 
-![4.2.4.2.calibrate_case](/md/AFL/AFL_img/4.2.4.2.calibrate_case.png)
+<img src="/md/AFL/AFL_img/4.2.4.2.calibrate_case.png" alt="4.2.4.2.calibrate_case" width="2337" height="2699" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:6.00em"></div>
 
@@ -7608,7 +7608,7 @@ abort_calibration:                           //当校准循环需要提前结束
 
 ##### 结构总览
 
-![4.2.5.init_forkserver结构总览](/md/AFL/AFL_img/4.2.5.init_forkserver结构总览.png)
+<img src="/md/AFL/AFL_img/4.2.5.init_forkserver结构总览.png" alt="4.2.5.init_forkserver结构总览" width="470" height="498" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -7845,7 +7845,7 @@ FATAL("Fork server handshake failed");
 
 ##### 握手后的执行模型
 
-![4.2.5.1](/md/AFL/AFL_img/4.2.5.1.png)
+<img src="/md/AFL/AFL_img/4.2.5.1.png" alt="4.2.5.1" width="659" height="220" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -7853,7 +7853,7 @@ FATAL("Fork server handshake failed");
 
 [图片来源]: https://paper.seebug.org/1732#2-4-init-forkserve-%E5%87%BD%E6%95%B0
 
-![4.2.5.init_forkserver函数控制流程图](/md/AFL/AFL_img/4.2.5.init_forkserver函数控制流程图.png)
+<img src="/md/AFL/AFL_img/4.2.5.init_forkserver函数控制流程图.png" alt="4.2.5.init_forkserver函数控制流程图" width="2274" height="2360" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -7861,13 +7861,13 @@ FATAL("Fork server handshake failed");
 
 fuzzer 并不直接 fork 子进程来执行目标程序，而是与目标程序内嵌的 forkserver 通信，由 forkserver 完成 fork 和后续执行，而目标程序内嵌的 forkserver 来自 AFL 在编译目标程序时注入的运行时初始化代码
 
-![4.2.5.init_forkserver通信状态](/md/AFL/AFL_img/4.2.5.init_forkserver通信状态.png)
+<img src="/md/AFL/AFL_img/4.2.5.init_forkserver通信状态.png" alt="4.2.5.init_forkserver通信状态" width="732" height="621" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 **执行时序**
 
-![4.2.5.init_forkserver时序](/md/AFL/AFL_img/4.2.5.init_forkserver时序.png)
+<img src="/md/AFL/AFL_img/4.2.5.init_forkserver时序.png" alt="4.2.5.init_forkserver时序" width="660" height="316" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:8.00em"></div>
 
@@ -7993,7 +7993,7 @@ static void show_stats(void) {
 
 `show_stats()` 节流刷新后先算平滑 exec 速度、bitmap 覆盖密度与稳定性，顺带执行每分钟左右的三类落盘和环境变量触发的退出检查；交互模式下再把它排成一个"process timing / map coverage / stage progress / fuzzing strategy"分栏的 ANSI 仪表盘，用颜色表达运行状态，底部显示 CPU 利用率
 
-![4.2.7.1.show_stats](/md/AFL/AFL_img/4.2.7.1.show_stats.png)
+<img src="/md/AFL/AFL_img/4.2.7.1.show_stats.png" alt="4.2.7.1.show_stats" width="420" height="138" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -8210,7 +8210,7 @@ static u8 run_target(char** argv, u32 timeout) {
 
 `run_target` 先清空 `trace_bits`，按 dumb/forkserver 两条路径派发子进程，用 `setitimer` 守护超时，等待结果后按"信号（区分超时 SIGKILL/真崩溃）→ MSAN 退出码 → exec 失败签名 → 正常"的顺序判定 fault，同时完成计数折叠、用时记录与 `total_execs` 累计，每次执行的状态闭环，`fault` 交给 `save_if_interesting` 决定测试用例的去留
 
-![4.2.9.1.run_target](/md/AFL/AFL_img/4.2.9.1.run_target.png)
+<img src="/md/AFL/AFL_img/4.2.9.1.run_target.png" alt="4.2.9.1.run_target" width="414" height="169" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
@@ -8369,7 +8369,7 @@ fault = run_target(argv, use_tmout);    // → 判定标定结果
 
 [图片来源]: https://paper.seebug.org/1732#2-5-run-target-%E5%87%BD%E6%95%B0
 
-![4.2.9.2.run_target.函数控制流程图](/md/AFL/AFL_img/4.2.9.2.run_target.函数控制流程图.png)
+<img src="/md/AFL/AFL_img/4.2.9.2.run_target.函数控制流程图.png" alt="4.2.9.2.run_target.函数控制流程图" width="1236" height="824" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -8570,13 +8570,13 @@ score_changed = 1;
 
 [图片来源]: https://paper.seebug.org/1732#2-6-updatescore-%E5%87%BD%E6%95%B0
 
-![4.2.11.2.控制流程图](/md/AFL/AFL_img/4.2.11.2.控制流程图.png)
+<img src="/md/AFL/AFL_img/4.2.11.2.控制流程图.png" alt="4.2.11.2.控制流程图" width="1236" height="824" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:2.00em"></div>
 
 ##### 与 cull_queue 的完整协作
 
-![4.2.11.1.协作](/md/AFL/AFL_img/4.2.11.1.协作.png)
+<img src="/md/AFL/AFL_img/4.2.11.1.协作.png" alt="4.2.11.1.协作" width="501" height="171" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:6.00em"></div>
 
@@ -8683,7 +8683,7 @@ if (pending_favored) {                       // 还有未模糊的精英
 
 ##### 完整机制图
 
-![4.3.1.1](/md/AFL/AFL_img/4.3.1.1.png)
+<img src="/md/AFL/AFL_img/4.3.1.1.png" alt="4.3.1.1" width="630" height="267" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:4.00em"></div>
 
@@ -9486,7 +9486,7 @@ skipped_fuzz = fuzz_one(use_argv);     // 对当前队列项执行一次变异�
 
 [图片来源]: https://paper.seebug.org/1732#3-2-%E4%B8%BB%E5%BE%AA%E7%8E%AF
 
-![4.4.2.函数控制流程图](/md/AFL/AFL_img/4.4.2.函数控制流程图.png)
+<img src="/md/AFL/AFL_img/4.4.2.函数控制流程图.png" alt="4.4.2.函数控制流程图" width="1061" height="2077" loading="lazy" decoding="async" />
 
 <div class="blank-gap" style="height:8.00em"></div>
 
@@ -9682,7 +9682,7 @@ static void sync_fuzzers(char** argv) {                   // 函数定义:argv �
 
 一次 `fuzz_one` 调用 = 处理 `queue_cur` 指向的一个输入。过程分为 6 大段
 
-![4.5.2.1](/md/AFL/AFL_img/4.5.2.1.png)
+<img src="/md/AFL/AFL_img/4.5.2.1.png" alt="4.5.2.1" width="538" height="265" loading="lazy" decoding="async" />
 
 返回值(函数头注释 + 12 行 `u8 ret_val = 1`):默认 1(跳过/放弃),只有完整跑完正常路径的 1667 行才置 0
 
