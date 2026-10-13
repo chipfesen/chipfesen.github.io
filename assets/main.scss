@@ -47,6 +47,8 @@
   line-height: 1.55;
   padding-right: 12px;
   border-right: 1px solid #e8e8e8;
+  /* 提升为独立合成层，滚动时无需重绘这块固定区域 */
+  will-change: transform;
 }
 
 .toc-heading {
