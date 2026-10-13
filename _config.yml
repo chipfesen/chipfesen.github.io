@@ -5,3 +5,10 @@ lang: zh-CN
 
 url: "https://chipfesen.github.io"
 baseurl: ""
+
+# md/ 下的原始归档稿不发布（仍在 Git 仓库里），避免和正式文章重复；
+# 图片目录不受影响，照常发布。
+exclude:
+  - md/AFL/AFL源码分析.md
+  - md/CVE-2026-8260/2026-10-13-CVE-2026-8260.md
+  - tools/

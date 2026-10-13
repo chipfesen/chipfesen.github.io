@@ -21,3 +21,88 @@
   display: block;
   margin: 1em auto 2.5em;
 }
+
+/* ===== 空行占位 =====
+   由 tools/build_afl.py 生成：Markdown 会把连续空行折叠掉，
+   这里用带高度的空 div 把原稿 3/5/7/9 个空行的疏密还原出来。 */
+.blank-gap {
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== 文章目录（左侧索引）===== */
+
+.toc-sidebar {
+  position: fixed;
+  top: 90px;
+  left: calc(50% - 370px - 290px);
+  width: 250px;
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+  font-size: 13px;
+  line-height: 1.55;
+  padding-right: 12px;
+  border-right: 1px solid #e8e8e8;
+}
+
+.toc-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.toc-heading button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  color: #828282;
+  padding: 0 4px;
+}
+
+.toc-list ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.toc-list ul ul {
+  padding-left: 12px;
+}
+
+.toc-list a {
+  display: block;
+  padding: 2px 0;
+  color: #666;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toc-list a:hover,
+.toc-list a.active {
+  color: #2a7ae2;
+}
+
+.toc-list a.active {
+  font-weight: 600;
+}
+
+.toc-list li.has-children > a::before {
+  content: "▸ ";
+  color: #bbb;
+}
+
+/* 视口不够宽就收起目录，避免压住正文 */
+@media screen and (max-width: 1320px) {
+  .toc-sidebar {
+    display: none;
+  }
+}

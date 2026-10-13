@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {{ page.date | date: date_format }}
+      </time></p>
+  </header>
+
+  {%- if page.toc -%}
+  <nav id="toc-sidebar" class="toc-sidebar" aria-label="文章目录">
+    <div class="toc-heading">
+      <span>目录</span>
+      <button id="toc-toggle" type="button" title="折叠/展开">−</button>
+    </div>
+    <div id="toc-list" class="toc-list"></div>
+  </nav>
+  {%- endif -%}
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  {%- if page.toc -%}
+  <script src="{{ '/assets/toc.js' | relative_url }}"></script>
+  {%- endif -%}
+
+</article>
